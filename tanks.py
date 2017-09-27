@@ -7,16 +7,6 @@ from enemy import Enemy
 from level import Level
 from renderer import Renderer
 
-question = 0
-answer = ""
-maxNum = 0
-gameLevel = 1
-difficulty = 1
-score = 0
-resultText = ""
-questionWidth = questionHeight = 0
-margin = 15
-
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 BKG = (234,234,234)
