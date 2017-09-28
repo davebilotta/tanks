@@ -1,8 +1,6 @@
 class Tank():
 	def __init__(self):
 
-		self.x_delta = 10            # How much will we change on the x axis - no longer used
-		self.y_delta = 10            # How much will we change on the y axis - no longer used
 		self.health = 100
 
 		self.alive = True
@@ -39,20 +37,16 @@ class Tank():
 
 	# Increase speed
 	def up(self):
-		if self.speed < self.max_speed:
+		if self.speed < self.max_speed_fwd:
 			self.speed += self.speed_delta
-
-		self.position = (self.position[0],self.position[1] - 10)
 
 	# Decrease speed
 	def down(self):
-		if self.speed > self.speed_delta:
+		if self.speed > self.max_speed_rev:
 			self.speed -= self.speed_delta
 
 		else:
-			self.speed = 0
-
-		self.position = (self.position[0],self.position[1] + 10)
+			self.speed = self.max_speed_rev
 
 	# Fire them guns
 	def fire(self):

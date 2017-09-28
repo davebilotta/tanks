@@ -6,6 +6,7 @@ from player import Player
 from enemy import Enemy
 from level import Level
 from renderer import Renderer
+from controller import Controller
 
 BLACK = (0,0,0)
 WHITE = (255,255,255)
@@ -17,10 +18,8 @@ background = None
 def setup():
     global screen, background, bkg
 
-    # set up pygame
+    # Set up the game and window
     pygame.init()
-
-    # set up the window
     WINDOWWIDTH = 1024
     WINDOWHEIGHT = 768
     screen = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
@@ -42,8 +41,14 @@ def main() :
     enemies = []
     level = Level(background,player,teammates,enemies)
     renderer = Renderer(screen,level)
+    controller = Controller(screen,level)
+
+    clock = pygame.time.Clock()
 
     while True:
+
+        clock.tick(30)
+
         # check for the QUIT event
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -91,6 +96,7 @@ def main() :
             if keys[K_x]:
                 player.turret_right()
 
+        controller.update()
         renderer.render()
 
         pygame.display.update()

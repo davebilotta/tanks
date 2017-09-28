@@ -12,9 +12,10 @@ class Player(Tank):
 
 		self.position = (400,400)
 		self.speed = 0
-		self.max_speed = 10
+		self.max_speed_fwd = 5
+		self.max_speed_rev = -2.5
 
-		self.speed_delta = 0.5       # How much does speed change
+		self.speed_delta = 0.5      # How much does speed change
 
 		self.friendly = True
 		self.enemy = False
