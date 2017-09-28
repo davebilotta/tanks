@@ -1,4 +1,5 @@
 from bullet import Bullet
+import math
 
 class Tank():
 	def __init__(self,internal_id,game):
@@ -55,11 +56,25 @@ class Tank():
 
 	# Fire them guns
 	def fire(self):
+		# TODO: Need to fix position issue
+		# Also need to check fire rate
+
 		pos = self.position
 
 		# 31 = half of width of tank (74/2 = 37) - width of bullet (6)
-		bullet = Bullet([pos[0]+31,pos[1]],self.rotation,self)
+		#bullet = Bullet([pos[0]+31,pos[1]],self.rotation,self)
+		'''x, y = position
+		rad = rotation * math.pi / -180
 
+		x += speed * math.sin(rad)
+		y += speed * math.cos(rad)'''
+		r = self.rotation * math.pi / -180
+
+		x = pos[0] + (31 * math.sin(r))
+		y = pos[0] + (1 * math.cos(r))
+
+		#bullet = Bullet([x,y],self.rotation,self)
+		bullet = Bullet(self.position,self.rotation,self)
 
 		# Add to level
 		self.game.level.add_bullet(bullet)

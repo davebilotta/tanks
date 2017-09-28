@@ -12,9 +12,11 @@ class Bullet():
 		self.rotation = rotation
 		self.tank = tank
 
-		self.speed = 0.25
+		self.speed = 10.5
 
 		# TODO: Should we load this up front in an asset manager of some sort?
 		# Check overhead with doing this for every bullet. Also need to destroy
 		# upon hit or exiting screen
 		self.image = pygame.image.load("assets/PNG/Bullets/bulletYellow.png")
+
+		print("Bullet created")

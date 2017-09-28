@@ -12,9 +12,11 @@ class Controller():
 		self.level = level
 
 	def update(self):
-		self.update_bullets()
 
 		self.update_player()
+
+		self.update_bullets()
+
 		self.update_teammates()
 
 		self.update_enemies()

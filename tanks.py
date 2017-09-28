@@ -66,7 +66,7 @@ def main():
                 pygame.quit()
                 sys.exit()
 
-            '''
+
             if event.type == pygame.KEYDOWN:
 
                 # TODO: Remove this later
@@ -85,9 +85,13 @@ def main():
                     player.up()
                 elif event.key == pygame.K_DOWN:
                     player.down()
-            '''
 
-            keys = pygame.key.get_pressed()
+                else:
+                    if event.key == pygame.K_SPACE:
+                        player.fire()
+
+
+            '''keys = pygame.key.get_pressed()
             if keys[K_LEFT] or keys[K_a]:
                 player.left()
             elif keys[K_RIGHT] or keys[K_d]:
@@ -98,14 +102,14 @@ def main():
             elif keys[K_DOWN] or keys[K_s]:
                 player.down()
 
-            if keys[K_SPACE]:
+            elif keys[K_SPACE]:
                 player.fire()
 
             if keys[K_z]:
                 player.turret_left()
 
             if keys[K_x]:
-                player.turret_right()
+                player.turret_right()'''
 
         controller.update()
         renderer.render()
