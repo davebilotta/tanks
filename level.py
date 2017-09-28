@@ -7,3 +7,7 @@ class Level():
 		self.player = player
 		self.teammates = []
 		self.enemies = []
+		self.bullets = []
+
+	def add_bullet(self,bullet):
+		self.bullets.append(bullet)

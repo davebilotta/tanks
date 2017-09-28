@@ -1,15 +1,20 @@
+from bullet import Bullet
+
 class Tank():
-	def __init__(self):
+	def __init__(self,internal_id,game):
+		self.id = internal_id
+		self.game = game
 
 		self.health = 100
 
+		self.rotation = 180                 # Current rotation of tank
+		self.rotation_delta = 6             # How many degrees tank rotates (should ideally divide into 360 evenly)
+		self.turret_rotation = 0            # Current rotation of turret
+		self.turret_rotation_delta = 11.25  # How many degrees turret rotates (should ideally divide into 360 evenly)
+		self.fire_rate = 2                  # How many seconds in between firings (lower number = faster firing)
+
 		self.alive = True
 		self.moving = False
-
-		self.rotation = 180
-		self.rotation_delta = 11.25
-		self.turret_rotation = 0
-		self.turret_rotation_delta = 11.25
 
 	# Handles movement
 	# Rotate to the left
@@ -50,7 +55,14 @@ class Tank():
 
 	# Fire them guns
 	def fire(self):
-		print("Fire")
+		pos = self.position
+
+		# 31 = half of width of tank (74/2 = 37) - width of bullet (6)
+		bullet = Bullet([pos[0]+31,pos[1]],self.rotation,self)
+
+
+		# Add to level
+		self.game.level.add_bullet(bullet)
 
 	# Rotate the turret to the right
 	def turret_left(self):
@@ -60,7 +72,6 @@ class Tank():
 
 		else:
 			self.turret_rotation = (360 - self.turret_rotation_delta)
-
 
 		#self.report_turret_rotation()
 

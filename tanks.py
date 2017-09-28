@@ -33,15 +33,26 @@ def setup():
 
     pygame.display.flip()
 
-def main() :
-    setup()
+class TankGame():
+    def __init__(self):
+        self.level = ""
+        self.renderer = ""
+        self.controller = ""
 
-    player = Player()
+def main():
+    setup()
+    game = TankGame()
+
+    player = Player(game)
     teammates = []
     enemies = []
     level = Level(background,player,teammates,enemies)
     renderer = Renderer(screen,level)
     controller = Controller(screen,level)
+
+    game.level = level
+    game.renderer = renderer
+    game.controller = controller
 
     clock = pygame.time.Clock()
 

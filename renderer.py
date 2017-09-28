@@ -29,9 +29,9 @@ class Renderer():
 	def render(self):
 		self.render_bkg()
 		self.render_ui()
+		self.render_bullets()
 		self.render_player()
 		self.render_teammates()
-
 		self.render_enemies()
 		self.render_objects()
 
@@ -78,6 +78,10 @@ class Renderer():
 
 	def render_ui(self):
 		pass
+
+	def render_bullets(self):
+		for bullet in self.level.bullets:
+			self.screen.blit(pygame.transform.rotate(bullet.image,360-bullet.rotation),bullet.position)
 
 	def render_player(self):
 		player = self.level.player

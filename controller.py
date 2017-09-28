@@ -11,29 +11,38 @@ class Controller():
 		self.screen = screen
 		self.level = level
 
-
 	def update(self):
-		#self.update_ui()
+		self.update_bullets()
+
 		self.update_player()
 		self.update_teammates()
 
 		self.update_enemies()
 		#self.update_objects()
 
+	def update_bullets(self):
+		for bullet in self.level.bullets:
+			bullet.position = self.update_position(bullet.position,bullet.rotation,bullet.speed)
+
 	def update_player(self):
-		x, y = self.level.player.position
-		rad = self.level.player.rotation * math.pi / -180
+		pos = self.level.player.position
+		rot = self.level.player.rotation
+		spd = self.level.player.speed
 
-		x += self.level.player.speed * math.sin(rad)
-		y += self.level.player.speed * math.cos(rad)
-
-
-    	# TODO: Check position off screen (how to handle?)
-
-		self.level.player.position = (x, y)
+		self.level.player.position = self.update_position(pos,rot,spd)
 
 	def update_teammates(self):
 		pass
 
 	def update_enemies(self):
 		pass
+
+	# This is called by tanks and bullets
+	def update_position(self,position,rotation,speed):
+		x, y = position
+		rad = rotation * math.pi / -180
+
+		x += speed * math.sin(rad)
+		y += speed * math.cos(rad)
+
+		return (x,y)

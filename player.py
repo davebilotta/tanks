@@ -3,8 +3,8 @@ from pygame.locals import *
 from tank import Tank
 
 class Player(Tank):
-	def __init__(self):
-		Tank.__init__(self)
+	def __init__(self,game):
+		Tank.__init__(self,0,game)
 
 		#self.image = pygame.image.load("assets/PNG/playerShip1_orange.png")
 		self.image = pygame.image.load("assets/PNG/Tanks/tankRed_with_barrel.png")
@@ -19,5 +19,4 @@ class Player(Tank):
 
 		self.friendly = True
 		self.enemy = False
-
 
