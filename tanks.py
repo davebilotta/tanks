@@ -47,6 +47,8 @@ def main():
     game = TankGame()
 
     player = Player(game)
+
+    game.player = player
     teammates = []
     enemies = []
 

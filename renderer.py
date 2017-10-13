@@ -31,7 +31,8 @@ class Renderer():
 
 		self.colors = {
 			"red": (200,0,0),
-			"blue": (100,100,100),
+			"blue": (0,0,255),
+			"orange": (255,165,0),
 		}
 
 		self.debug_mode = False
@@ -100,9 +101,14 @@ class Renderer():
 		score_text = self.ui_font.render(("Score: " + str(game.level.score)),1,self.colors['red'])
 		self.screen.blit(score_text,(offset_x,offset_y))
 
+		# Render speed below score
+		speed_text = self.ui_font.render(("Speed: " + str(game.player.speed)),1,self.colors['orange'])
+		self.screen.blit(speed_text,(offset_x,(offset_y + score_text.get_height() + (offset_y/2))))
+
 		# Render level number in top right
 		level_text = self.ui_font.render(("Level: " + str(game.level.number)),1,self.colors['blue'])
 		self.screen.blit(level_text,((self.screen.get_width() - level_text.get_width() - offset_x),offset_y))
+
 
 	def render_bullets(self):
 		red = (255,0,0)
