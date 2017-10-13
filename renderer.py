@@ -6,6 +6,7 @@ class Renderer():
 		self.screen = screen
 		self.level = level
 
+		# TODO: Move all of this to asset class?
 		self.sand = pygame.image.load("assets/PNG/Environment/sand.png")
 		self.grass = pygame.image.load("assets/PNG/Environment/grass.png")
 		self.dirt = pygame.image.load("assets/PNG/Environment/dirt.png")
@@ -18,19 +19,26 @@ class Renderer():
 		self.tree_large_grass = pygame.image.load("assets/PNG/Environment/treeLarge_grass.png")
 		self.tree_large_dirt = pygame.image.load("assets/PNG/Environment/treeLarge_dirt.png")
 
+		self.ui_font = pygame.font.SysFont("monospace",24,bold=True)
+
 		self.bkg = []
-		self.bkg.append(["LS","S","S","S","S","LS","S","S"])
+		self.bkg.append(["S","S","LS","S","S","LS","S","S"])
 		self.bkg.append(["S","S","S","S","S","S","S","S"])
 		self.bkg.append(["S","SS","S","S","S","S","S","S"])
 		self.bkg.append(["S","S","S","S","S","S","S","S"])
 		self.bkg.append(["LS","S","S","S","SS","S","S","SS"])
 		self.bkg.append(["S","LS","S","S","S","S","S","S"])
 
+		self.colors = {
+			"red": (200,0,0),
+			"blue": (100,100,100),
+		}
+
 		self.debug_mode = False
 
-	def render(self,tanks_object):
+	def render(self,game):
 		self.render_bkg()
-		self.render_ui(tanks_object)
+		self.render_ui(game)
 		self.render_bullets()
 		self.render_player()
 		self.render_teammates()
@@ -78,12 +86,23 @@ class Renderer():
 		else:
 			return self.sand
 
-	def render_ui(self,tanks_object):
-		fps = tanks_object.clock.get_fps()
-		#print(fps)
+	def render_ui(self,game):
+		''' This renders the FPS, UI components (ex: score, level, etc.) '''
+		fps = game.clock.get_fps()
+		offset_x = 10
+		offset_y = 5
 
+		# Render the FPS in the Title Bar
 		caption = "FPS: " + str(round(fps))
 		pygame.display.set_caption(caption)
+
+		# Render score in the top left
+		score_text = self.ui_font.render(("Score: " + str(game.level.score)),1,self.colors['red'])
+		self.screen.blit(score_text,(offset_x,offset_y))
+
+		# Render level number in top right
+		level_text = self.ui_font.render(("Level: " + str(game.level.number)),1,self.colors['blue'])
+		self.screen.blit(level_text,((self.screen.get_width() - level_text.get_width() - offset_x),offset_y))
 
 	def render_bullets(self):
 		red = (255,0,0)

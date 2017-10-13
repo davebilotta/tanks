@@ -49,7 +49,8 @@ def main():
     player = Player(game)
     teammates = []
     enemies = []
-    level = Level(background,player,teammates,enemies)
+
+    level = Level("1-A",background,player,teammates,enemies)
     renderer = Renderer(screen,level)
     controller = Controller(screen,level)
 
