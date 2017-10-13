@@ -26,6 +26,10 @@ class Renderer():
 		self.bkg.append(["LS","S","S","S","SS","S","S","SS"])
 		self.bkg.append(["S","LS","S","S","S","S","S","S"])
 
+		self.clock = pygame.time.Clock()
+
+		self.debug_mode = False
+
 	def render(self):
 		self.render_bkg()
 		self.render_ui()
@@ -77,18 +81,26 @@ class Renderer():
 			return self.sand
 
 	def render_ui(self):
+		#caption = "FPS: " + str(self.clock.get_fps())
+		#pygame.display.set_caption(caption)
 		pass
 
 	def render_bullets(self):
+		red = (255,0,0)
 		for bullet in self.level.bullets:
-			self.screen.blit(pygame.transform.rotate(bullet.image,360-bullet.rotation),bullet.position)
+			self.screen.blit(bullet.image,bullet.rect)
+
+			if self.debug_mode:
+				pygame.draw.circle(self.screen, red, (int(bullet.position[0]),int(bullet.position[1])), 10, 5)
 
 	def render_player(self):
+		red = (255,0,0)
 		player = self.level.player
-		#self.screen.blit(player.image,player.position)
 
-		self.screen.blit(pygame.transform.rotate(player.image,360-player.rotation),player.position)
-		#self.screen.blit(pygame.transform.rotate(player.barrel_image,360-player.rotation),player.position + (0,10))
+		self.screen.blit(player.image,player.rect)
+
+		if self.debug_mode:
+			pygame.draw.circle(self.screen, red, (int(player.position[0]),int(player.position[1])), 50, 5)
 
 	def render_teammates(self):
 		pass

@@ -1,6 +1,7 @@
 import pygame
 import math
 from pygame.locals import *
+from datetime import datetime
 
 class Bullet():
 	def __init__(self,position,rotation,tank=None):
@@ -11,12 +12,21 @@ class Bullet():
 		self.position = position
 		self.rotation = rotation
 		self.tank = tank
+		self.create_time = datetime.now()
 
-		self.speed = 10.5
+		self.speed = 20
+		self.ttl = 1.5          # How many seconds does this exist
 
-		# TODO: Should we load this up front in an asset manager of some sort?
-		# Check overhead with doing this for every bullet. Also need to destroy
-		# upon hit or exiting screen
-		self.image = pygame.image.load("assets/PNG/Bullets/bulletYellow.png")
+		# TODO: Should load this up front in an asset manager
+		#       Need to destroy on exiting screen
 
-		print("Bullet created")
+		self.image = pygame.image.load("assets/PNG/Bullets/bulletYellow_180.png")
+		self.image_original = pygame.image.load("assets/PNG/Bullets/bulletYellow_180.png")
+
+		self.image = pygame.transform.rotate(self.image_original,self.rotation)
+
+		self.rect = self.image.get_rect()
+		self.rect.center = self.position
+
+
+

@@ -6,9 +6,8 @@ class Player(Tank):
 	def __init__(self,game):
 		Tank.__init__(self,0,game)
 
-		#self.image = pygame.image.load("assets/PNG/playerShip1_orange.png")
-		self.image = pygame.image.load("assets/PNG/Tanks/tankRed_with_barrel.png")
-		#self.barrel_image = pygame.image.load("assets/PNG/Tanks/barrelRed.png")
+		self.image = pygame.image.load("assets/PNG/Tanks/tankRed_with_barrel_180.png")
+		self.image_original = pygame.image.load("assets/PNG/Tanks/tankRed_with_barrel_180.png")
 
 		self.position = (400,400)
 		self.speed = 0
@@ -19,4 +18,7 @@ class Player(Tank):
 
 		self.friendly = True
 		self.enemy = False
+
+		self.rect = self.image.get_rect()
+		self.rect.center = self.position
 
