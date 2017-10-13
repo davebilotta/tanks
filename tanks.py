@@ -20,6 +20,7 @@ def setup():
 
     # Set up the game and window
     pygame.init()
+
     WINDOWWIDTH = 1024
     WINDOWHEIGHT = 768
     screen = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
@@ -39,6 +40,8 @@ class TankGame():
         self.renderer = ""
         self.controller = ""
 
+        self.clock = pygame.time.Clock()
+
 def main():
     setup()
     game = TankGame()
@@ -54,18 +57,13 @@ def main():
     game.renderer = renderer
     game.controller = controller
 
-    clock = pygame.time.Clock()
-
     while True:
-
-        clock.tick(30)
 
         # check for the QUIT event
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-
 
             if event.type == pygame.KEYDOWN:
 
@@ -90,30 +88,11 @@ def main():
                     if event.key == pygame.K_SPACE:
                         player.fire()
 
-
-            '''keys = pygame.key.get_pressed()
-            if keys[K_LEFT] or keys[K_a]:
-                player.left()
-            elif keys[K_RIGHT] or keys[K_d]:
-                player.right()
-
-            if keys[K_UP] or keys[K_w]:
-                player.up()
-            elif keys[K_DOWN] or keys[K_s]:
-                player.down()
-
-            elif keys[K_SPACE]:
-                player.fire()
-
-            if keys[K_z]:
-                player.turret_left()
-
-            if keys[K_x]:
-                player.turret_right()'''
-
         controller.update()
-        renderer.render()
+        renderer.render(game)
 
         pygame.display.update()
+
+        game.clock.tick(30)
 
 main()

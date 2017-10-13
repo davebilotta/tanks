@@ -26,13 +26,11 @@ class Renderer():
 		self.bkg.append(["LS","S","S","S","SS","S","S","SS"])
 		self.bkg.append(["S","LS","S","S","S","S","S","S"])
 
-		self.clock = pygame.time.Clock()
-
 		self.debug_mode = False
 
-	def render(self):
+	def render(self,tanks_object):
 		self.render_bkg()
-		self.render_ui()
+		self.render_ui(tanks_object)
 		self.render_bullets()
 		self.render_player()
 		self.render_teammates()
@@ -80,10 +78,12 @@ class Renderer():
 		else:
 			return self.sand
 
-	def render_ui(self):
-		#caption = "FPS: " + str(self.clock.get_fps())
-		#pygame.display.set_caption(caption)
-		pass
+	def render_ui(self,tanks_object):
+		fps = tanks_object.clock.get_fps()
+		#print(fps)
+
+		caption = "FPS: " + str(round(fps))
+		pygame.display.set_caption(caption)
 
 	def render_bullets(self):
 		red = (255,0,0)

@@ -15,7 +15,7 @@ class Bullet():
 		self.create_time = datetime.now()
 
 		self.speed = 20
-		self.ttl = 1.5          # How many seconds does this exist
+		self.ttl = 1             # How many seconds does this exist
 
 		# TODO: Should load this up front in an asset manager
 		#       Need to destroy on exiting screen
