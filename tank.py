@@ -5,12 +5,12 @@ import pygame
 from pygame.math import Vector2
 
 class Tank():
-	def __init__(self,internal_id,game):
+	def __init__(self,internal_id,game,friendly=False):
 		self.id = internal_id
 		self.game = game
+		self.friendly = friendly
 
 		self.health = 100
-
 		self.rotation = 0                   # Current rotation of tank
 		self.rotation_delta = 6             # How many degrees tank rotates (should ideally divide into 360 evenly)
 		self.turret_rotation = 0            # Current rotation of turret

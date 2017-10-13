@@ -107,8 +107,11 @@ class Renderer():
 
 		# Render level number in top right
 		level_text = self.ui_font.render(("Level: " + str(game.level.number)),1,self.colors['blue'])
-		self.screen.blit(level_text,((self.screen.get_width() - level_text.get_width() - offset_x),offset_y))
+		self.screen.blit(level_text,((self.screen.get_width() - level_text.get_width() - offset_x), offset_y))
 
+		# Render health below level number
+		health_text = self.ui_font.render(("Health: " + str(game.player.health)),1,self.colors['blue'])
+		self.screen.blit(health_text,((self.screen.get_width() - health_text.get_width() - offset_x), (offset_y + health_text.get_height() + (offset_y/2))))
 
 	def render_bullets(self):
 		red = (255,0,0)

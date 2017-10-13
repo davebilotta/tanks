@@ -1,3 +1,19 @@
+''' TODO:
+Player health
+Kill bullets when off screen
+Test of basic collision (static object)
+Add enemies
+Asset manager
+Scroll screen
+Level bkg, obstacles
+Collision with Oil slicks, etc.
+
+Collision with obstacles like trees
+Bullet collision with enemies
+Physical collision with enemies
+
+'''
+
 import pygame, sys, time
 from random import randint
 from pygame.locals import *
