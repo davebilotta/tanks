@@ -17,10 +17,9 @@ class StaticGameObject():
 
 	def hit(self):
 		print("OBS IS HIT!")
-		self.health -= 20
+		self.health -= 25
 
 		if self.health <=0:
 			self.alive = False
-
-		# TODO: Figure out how to remove
+			self.game.level.remove_obstacle(self)
 

@@ -41,3 +41,13 @@ class Level():
 
 	def add_bullet(self,bullet):
 		self.bullets.append(bullet)
+
+	def remove_enemy(self,enemy):
+		for remove_enemy in self.enemies:
+			if remove_enemy == enemy:
+				self.enemies.remove(enemy)
+
+	def remove_obstacle(self,obstacle):
+		for remove_obstacle in self.obstacles:
+			if remove_obstacle == obstacle:
+				self.obstacles.remove(obstacle)

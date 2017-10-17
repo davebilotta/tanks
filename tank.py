@@ -94,6 +94,7 @@ class Tank():
 
 		if self.health <=0:
 			self.alive = False
+			self.game.level.remove_enemy(self)
 
 	# Rotate the turret to the right - not used at present
 	def turret_left(self):
