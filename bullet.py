@@ -14,8 +14,14 @@ class Bullet():
 		self.tank = tank
 		self.create_time = datetime.now()
 
-		self.speed = 20
-		self.ttl = 1             # How many seconds does this exist
+		debug = False
+		if debug:
+			self.speed = 2.5
+			self.ttl = 10
+
+		else:
+			self.speed = 50
+			self.ttl = 1             # How many seconds does this exist
 
 		# TODO: Should load this up front in an asset manager
 		#       Need to destroy on exiting screen
@@ -27,6 +33,8 @@ class Bullet():
 
 		self.rect = self.image.get_rect()
 		self.rect.center = self.position
+
+		self.alive = True
 
 
 

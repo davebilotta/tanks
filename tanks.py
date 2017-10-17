@@ -1,5 +1,4 @@
 ''' TODO:
-Player health
 Kill bullets when off screen
 Test of basic collision (static object)
 Add enemies
@@ -37,16 +36,22 @@ def setup():
     # Set up the game and window
     pygame.init()
 
-    WINDOWWIDTH = 1024
-    WINDOWHEIGHT = 768
+    small = True
+    if (small):
+        WINDOWWIDTH = 1024
+        WINDOWHEIGHT = 768
+    else:
+        WINDOWWIDTH = 1364
+        WINDOWHEIGHT = 1024
+
     screen = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
     pygame.display.set_caption("Tanks Game")
 
     # Display some text
     background = pygame.Surface(screen.get_size())
-    background = background.convert()
+    background = background.convert_alpha()
 
-    screen.blit(background,(0,0))
+    #screen.blit(background,(0,0))
 
     pygame.display.flip()
 
@@ -57,6 +62,7 @@ class TankGame():
         self.controller = ""
 
         self.clock = pygame.time.Clock()
+        self.screen = None
 
 def main():
     setup()
@@ -68,13 +74,11 @@ def main():
     teammates = []
     enemies = []
 
-    level = Level("1-A",background,player,teammates,enemies)
-    renderer = Renderer(screen,level)
-    controller = Controller(screen,level)
+    game.screen = screen
 
-    game.level = level
-    game.renderer = renderer
-    game.controller = controller
+    game.level = Level("1-A",game,background,player,teammates,enemies)
+    game.renderer = Renderer(game)
+    game.controller = Controller(game)
 
     while True:
 
@@ -107,8 +111,8 @@ def main():
                     if event.key == pygame.K_SPACE:
                         player.fire()
 
-        controller.update()
-        renderer.render(game)
+        game.controller.tick()
+        game.renderer.render(game)
 
         pygame.display.update()
 

@@ -1,28 +1,23 @@
-class Enemy():
-	def __init__(self):
-		print ("Enemy Constructor")
+import pygame
+from pygame.locals import *
+from tank import Tank
+import random
 
-		self.image = ""
-		self.position = (100,100)
-		self.speed = 10
-		self.health = 100
-		self.alive = True
-		self.moving = False
+class Enemy(Tank):
+	def __init__(self,game):
+		Tank.__init__(self,0,game,False)
 
-		self.friendly = False
-		self.enemy = True
+		# TODO: Change this later
+		self.image = pygame.image.load("assets/PNG/Tanks/tankBeige.png")
+		self.image_original = pygame.image.load("assets/PNG/Tanks/tankBeige.png")
 
-	def get_position(self):
-		return self.position
+		# Start enemy at random position
+		self.position = (random.randint(0,self.game.screen.get_width()),random.randint(0,self.game.screen.get_height()))
+		self.speed = 0.5
+		self.max_speed_fwd = 5
+		self.max_speed_rev = -2.5
 
-	def get_speed(self):
-		return self.speed
+		self.speed_delta = 0.5      # How much does speed change
 
-	def get_health(self):
-		return self.health
-
-	def is_alive(self):
-		return self.alive
-
-	def is_moving(self):
-		return self.moving
+		self.rect = self.image.get_rect()
+		self.rect.center = self.position

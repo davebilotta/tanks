@@ -70,7 +70,7 @@ class Tank():
 
 	def fire(self):
 		# TODO: Need to fix position issue
-		#print ("Fire")
+		print ("Fire")
 
 		now = datetime.datetime.now()
 
@@ -86,6 +86,14 @@ class Tank():
 		else:
 			# TODO: Do we need to do anything if rate limited
 			pass
+
+	def hit(self):
+		print ("I'M HIT!")
+
+		self.health -= 20
+
+		if self.health <=0:
+			self.alive = False
 
 	# Rotate the turret to the right - not used at present
 	def turret_left(self):

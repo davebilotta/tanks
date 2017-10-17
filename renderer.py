@@ -2,9 +2,9 @@ import pygame
 from pygame.locals import *
 
 class Renderer():
-	def __init__(self,screen,level):
-		self.screen = screen
-		self.level = level
+	def __init__(self,game):
+		self.screen = game.screen
+		self.level = game.level
 
 		# TODO: Move all of this to asset class?
 		self.sand = pygame.image.load("assets/PNG/Environment/sand.png")
@@ -30,8 +30,8 @@ class Renderer():
 		self.bkg.append(["S","LS","S","S","S","S","S","S"])
 
 		self.colors = {
-			"red": (200,0,0),
-			"blue": (0,0,255),
+			   "red": (200,0,0),
+			  "blue": (0,0,255),
 			"orange": (255,165,0),
 		}
 
@@ -44,24 +44,20 @@ class Renderer():
 		self.render_player()
 		self.render_teammates()
 		self.render_enemies()
-		self.render_objects()
+		self.render_obstacles()
 
 	def render_bkg(self):
-		#self.screen.blit(self.level.background, (0,0))
-
-	    #screen.blit(background, (0, 0))
 	    bkg_w = 128
 	    bkg_h = 128
-	    blit_cnt = 0
 
 	    for y in range(0,6):
 	        for x in range(0,8):
-	            #background.blit(bkg_img,(bkg_w*x,bkg_h*y))
 	            self.level.background.blit(self.get_bkg_image(x,y),(bkg_w*x,bkg_h*y))
 
 	    self.screen.blit(self.level.background,(0,0))
 
 	def get_bkg_image(self,x,y):
+		# TODO: Fix this later
 		img = self.bkg[y][x]
 
 		if img == "S":
@@ -131,13 +127,13 @@ class Renderer():
 			pygame.draw.circle(self.screen, red, (int(player.position[0]),int(player.position[1])), 50, 5)
 
 	def render_teammates(self):
-		pass
+		for teammate in self.level.teammates:
+			self.screen.blit(teammate.image,teammate.rect)
 
 	def render_enemies(self):
-		pass
+		for enemy in self.level.enemies:
+			self.screen.blit(enemy.image,enemy.rect)
 
-	def render_objects(self):
-		pass
-
-
-
+	def render_obstacles(self):
+		for obstacle in self.level.obstacles:
+			self.screen.blit(obstacle.image,obstacle.position)
