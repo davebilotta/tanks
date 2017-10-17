@@ -3,6 +3,7 @@ import pygame
 
 from static_game_object import StaticGameObject
 from enemy import Enemy
+from effect import Effect
 
 class Level():
 	def __init__(self,level_number,game,background,player,teammates,enemies):
@@ -16,6 +17,7 @@ class Level():
 		self.teammates = []
 		self.enemies = []
 		self.bullets = []
+		self.effects = []
 
 		# These are random for testing - remove later one real level is determined
 		self.load_obstacles()
@@ -42,13 +44,18 @@ class Level():
 	def add_bullet(self,bullet):
 		self.bullets.append(bullet)
 
+	def remove_bullet(self,bullet):
+		self.bullets.remove(bullet)
+
 	def remove_enemy(self,enemy):
-		for remove_enemy in self.enemies:
-			if remove_enemy == enemy:
-				self.enemies.remove(enemy)
-				self.score += 1
+		self.enemies.remove(enemy)
+		self.score += 1
 
 	def remove_obstacle(self,obstacle):
-		for remove_obstacle in self.obstacles:
-			if remove_obstacle == obstacle:
-				self.obstacles.remove(obstacle)
+		self.obstacles.remove(obstacle)
+
+	def add_effect(self,position):
+		self.effects.append(Effect(position))
+
+	def remove_effect(self,effect):
+		self.effects.remove(effect)

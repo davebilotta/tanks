@@ -15,7 +15,7 @@ class Tank():
 		self.rotation_delta = 10            # How many degrees tank rotates (should ideally divide into 360 evenly)
 		self.turret_rotation = 0            # Current rotation of turret
 		self.turret_rotation_delta = 11.25  # How many degrees turret rotates (should ideally divide into 360 evenly)
-		self.fire_rate = 0.25               # How many seconds in between firings (lower number = faster firing)
+		self.fire_rate = 0.05               # How many seconds in between firings (lower number = faster firing)
 		self.last_fire = None               # When did we last fire
 
 		self.alive = True

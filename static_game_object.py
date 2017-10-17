@@ -6,7 +6,7 @@ class StaticGameObject():
 		self.position = position
 
 		self.health = 100
-		self.rotation = 0                   # Current rotation of tank
+		self.rotation = 0
 
 		self.rect = None
 

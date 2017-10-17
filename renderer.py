@@ -45,6 +45,7 @@ class Renderer():
 		self.render_teammates()
 		self.render_enemies()
 		self.render_obstacles()
+		self.render_effects()
 
 	def render_bkg(self):
 	    bkg_w = 128
@@ -110,21 +111,19 @@ class Renderer():
 		self.screen.blit(health_text,((self.screen.get_width() - health_text.get_width() - offset_x), (offset_y + health_text.get_height() + (offset_y/2))))
 
 	def render_bullets(self):
-		red = (255,0,0)
 		for bullet in self.level.bullets:
 			self.screen.blit(bullet.image,bullet.rect)
 
 			if self.debug_mode:
-				pygame.draw.circle(self.screen, red, (int(bullet.position[0]),int(bullet.position[1])), 10, 5)
+				pygame.draw.circle(self.screen, self.colors['red'], (int(bullet.position[0]),int(bullet.position[1])), 10, 5)
 
 	def render_player(self):
-		red = (255,0,0)
 		player = self.level.player
 
 		self.screen.blit(player.image,player.rect)
 
 		if self.debug_mode:
-			pygame.draw.circle(self.screen, red, (int(player.position[0]),int(player.position[1])), 50, 5)
+			pygame.draw.circle(self.screen, self.colors['red'], (int(player.position[0]),int(player.position[1])), 50, 5)
 
 	def render_teammates(self):
 		for teammate in self.level.teammates:
@@ -134,6 +133,13 @@ class Renderer():
 		for enemy in self.level.enemies:
 			self.screen.blit(enemy.image,enemy.rect)
 
+			if self.debug_mode:
+				pygame.draw.circle(self.screen, self.colors['red'], (int(enemy.position[0]),int(enemy.position[1])), 50, 5)
+
 	def render_obstacles(self):
 		for obstacle in self.level.obstacles:
 			self.screen.blit(obstacle.image,obstacle.position)
+
+	def render_effects(self):
+		for effect in self.level.effects:
+			self.screen.blit(effect.image,effect.position)

@@ -1,16 +1,20 @@
 ''' TODO:
-Kill bullets when off screen
-Test of basic collision (static object)
-Add enemies
+Feedback when hit
 Asset manager
 Scroll screen
+
+Fix collision issues
+   o Rectangle issue (rotated)
+   o How to handle colliding with objects like enemies, oil, obstacles
+
+Kill bullets when off screen
+Add enemy AI
 Level bkg, obstacles
-Collision with Oil slicks, etc.
 
 Collision with obstacles like trees
 Bullet collision with enemies
-Physical collision with enemies
 
+Tire tracks
 '''
 
 import pygame, sys, time
