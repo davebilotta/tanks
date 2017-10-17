@@ -47,7 +47,7 @@ class Controller():
 
 				if bullet_rect.colliderect(enemy_rect):
 					bullet.alive = False
-					enemy.hit()
+					enemy.hit(bullet)
 
 			# Check bullet collision with obstacles
 			for obs in self.level.obstacles:
@@ -55,7 +55,7 @@ class Controller():
 
 				if bullet_rect.colliderect(obs_rect):
 					bullet.alive = False
-					obs.hit()
+					obs.hit(bullet)
 
 		# Check enemy with obstacles
 

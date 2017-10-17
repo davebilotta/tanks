@@ -46,6 +46,7 @@ class Level():
 		for remove_enemy in self.enemies:
 			if remove_enemy == enemy:
 				self.enemies.remove(enemy)
+				self.score += 1
 
 	def remove_obstacle(self,obstacle):
 		for remove_obstacle in self.obstacles:

@@ -12,10 +12,10 @@ class Tank():
 
 		self.health = 100
 		self.rotation = 0                   # Current rotation of tank
-		self.rotation_delta = 6             # How many degrees tank rotates (should ideally divide into 360 evenly)
+		self.rotation_delta = 10            # How many degrees tank rotates (should ideally divide into 360 evenly)
 		self.turret_rotation = 0            # Current rotation of turret
 		self.turret_rotation_delta = 11.25  # How many degrees turret rotates (should ideally divide into 360 evenly)
-		self.fire_rate = 1                  # How many seconds in between firings (lower number = faster firing)
+		self.fire_rate = 0.25               # How many seconds in between firings (lower number = faster firing)
 		self.last_fire = None               # When did we last fire
 
 		self.alive = True
@@ -86,15 +86,6 @@ class Tank():
 		else:
 			# TODO: Do we need to do anything if rate limited
 			pass
-
-	def hit(self):
-		print ("I'M HIT!")
-
-		self.health -= 20
-
-		if self.health <=0:
-			self.alive = False
-			self.game.level.remove_enemy(self)
 
 	# Rotate the turret to the right - not used at present
 	def turret_left(self):

@@ -14,6 +14,10 @@ class Bullet():
 		self.tank = tank
 		self.create_time = datetime.now()
 
+		self.damage = {
+			'tank': 5,
+			'obstacle': 25}
+
 		debug = False
 		if debug:
 			self.speed = 2.5

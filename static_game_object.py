@@ -15,9 +15,8 @@ class StaticGameObject():
 
 		self.alive = True
 
-	def hit(self):
-		print("OBS IS HIT!")
-		self.health -= 25
+	def hit(self,bullet):
+		self.health -= bullet.damage['obstacle']
 
 		if self.health <=0:
 			self.alive = False

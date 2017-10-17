@@ -21,3 +21,10 @@ class Enemy(Tank):
 
 		self.rect = self.image.get_rect()
 		self.rect.center = self.position
+
+	def hit(self,bullet):
+		self.health -= bullet.damage['tank']
+
+		if self.health <=0:
+			self.alive = False
+			self.game.level.remove_enemy(self)
